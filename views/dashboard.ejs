@@ -1,0 +1,73 @@
+<html lang = "en">
+
+    <head>
+    <title>Park Smart</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    h3{
+        border-radius: 5px 5px 5px 5px;
+        height: 40px;
+        position: absolute;
+        top: -10;
+        width: 1600px;
+    }
+    .LogOutbutton {
+       top:0%;
+       left:91%;
+       width:150px;
+       height: 88   px;
+       position: absolute;
+       z-index: 2; 
+       
+       color:  white;
+       }
+    .ListParkingbutton {
+       top:20%;
+       left:1%;
+       width:150px;
+       height: 80px;
+       position: absolute;
+       z-index: 2; 
+       }
+       .FindParkingbutton {
+       top:20%;
+       left:15%;
+       width:150px;
+       height: 80px;
+       position: absolute;
+       z-index: 2; 
+       }
+   </style>
+    </head>
+
+<body>
+
+      <h3 class="bg-primary text-white text-center border border-primary border-5 rounded-3 center">ParkSmart  Welcome <%= message%> </h3>
+    <div class = "w3-container">
+
+
+
+ <form  class="form-horizontal" role="form"  action="/map">
+ <button type="submit" class="btn btn-primary FindParkingbutton btn" >Find Parking</button>
+</form>
+
+ <form  class="form-horizontal" role="form"  action="/ListerMap">
+<button type="submit" class="btn btn-primary ListParkingbutton btn">List Parking</button>
+
+ </form>
+ <div style="position:relative; left:0px; top:40px;">
+<p style = "font-size: 24;">  Please select one of the following choices</p>
+</div>
+
+<form align="right"  action="/logout">
+
+  <button type="submit" class="btn btn-outline-primary LogOutbutton btn " value = "log out">Sign Out</button>
+    
+    
+</form>
+
+</body>
+</html>

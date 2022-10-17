@@ -1,0 +1,241 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <title>locationAwareMap</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 650px;
+        width: 1000px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+       .LogOutbutton {
+       top:0%;
+       left:92%;
+       width:125px;
+       height: 44px;
+       position: absolute;
+       z-index: 2; 
+       }
+       
+    </style>
+
+    <script>
+       
+   
+      // create a variable to reference the map object
+      let map;
+      let markers = [];
+  function initMap() {
+    const uluru = { lat: 41.87183893690712, lng: -87.65425182844253 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: uluru,
+    });
+
+      function addMarker(markerPos) {
+             const marker = new google.maps.Marker({
+          position: markerPos,
+          map,
+          title: "Parking Spot",
+        });
+              var infoWindow = new google.maps.InfoWindow({
+          content: contentString,
+        });
+        infoWindow.addListener('click', ()=>{
+          infoWindow.close();
+        });
+
+             marker.addListener("click", () => {
+          infoWindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+          });
+        });
+
+
+
+            }
+    let flag = 0;
+
+    // iterate over all parking spots from database and create markers on map
+    <% for(var i=0; i < Long.length; i++){ %>
+        // the contet string for the infoWindow
+        var cardClone;
+        if (flag === 0) {
+                // directly update the values of the template card
+                cardClone = document.querySelector(".card");
+                cardClone.setAttribute("id", "keep");
+              } else {
+                // clone the existing card
+                cardClone = document.querySelector(".card").cloneNode(true);
+                cardClone.setAttribute("id", "clear");
+              }
+          cardClone.querySelector(".card-title").innerText = "<%= Address[i]%>";
+          cardClone.querySelector(".card-text").innerText = " Pricing: <%= Rates[i] %>" + "\n Additional Notes: <%= Info[i] %> ";
+         
+
+      
+
+        var contentString = 
+          '<div id="content">' +
+          '<div id="siteNotice">' +
+          "</div>" +
+          '<h1 id="firstHeading" class="firstHeading">' + "<%= Address[i] %>" + '</h1>' +
+          '<div id="bodyContent">' +
+          "<p><b>Parking available</b></p>" +
+          "<p><b> Price: $" +  "<%= Rates[i] %>"   + " per Hour</b></p>" +
+          "<p><b>Notes: " +  "<%= Info[i] %>" + "</b></p>" +
+          "</div>" +
+          "</div>";
+
+      var markerPos = { lat: <%= Lat[i] %>, lng: <%= Long[i] %>};
+      
+      addMarker(markerPos); 
+      
+        // create an info window
+       
+        
+      
+      document.querySelector(".cards");
+      flag++;
+
+    <% } %> 
+
+
+  }
+
+  window.initMap = initMap;
+          
+
+    </script>
+  </head>
+
+  <body>
+    <h3 class="bg-primary text-white text-center border border-primary border-5 rounded-3">ParkSmart</h3>
+
+    <!--The div element for the map -->
+    <!-- <div id="map"></div> -->
+    <!--   start  -->
+    <div>
+      <!--The div element for the map -->
+      <div id="map" style="float:left"></div>
+
+      <!--   card to describe a parking spot -->
+      <div id="cards" style="float:right; height: 600px; overflow: scroll">
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">Parking lot, Chicago, IL 60607</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $3.00 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+
+        
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">Parking lot, Chicago, IL 60607</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $3.00 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">1135 S Morgan St, Chicago, IL 60607</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $1.00 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+        
+      
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">Parking lot, Chicago, IL 60607</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $1.50 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+        
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">Parking lot, Chicago, IL 60608</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $5.00 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+       
+        <div class="card" style="width: 25rem" id = "keep">
+          <div class="card-body">
+            <h5 class="card-title">710 W 13th St, Chicago, IL 60607</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Parking Available</h6>
+            <p class="card-text">Price: $3.00 per Hour <br>
+             Notes: Extra Information to be stored here! </br></p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+          </div>
+        </div>
+
+   
+    <form align="right"  action="/logout">
+
+  <button class ="LogOutbutton btn btn-primary"; value="log out">
+    Sign Out
+    </button>
+</form>
+
+
+
+    </div>
+  <!--   end -->
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJKsC-WvjaJxdH6uRGpKUfk8FEyvBkjWc&callback=initMap&libraries=&v=weekly"
+      async>
+    </script>
+
+
+  </body>
+  </html>
